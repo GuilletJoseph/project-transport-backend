@@ -24,16 +24,16 @@ public class Vehicule implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne
    	@JoinColumn(name = "idTypeV", referencedColumnName = "id")
     private TypeV idTypeV;
     private int nbPlace;
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne
    	@JoinColumn(name = "idBoite", referencedColumnName = "id")
     private Boite idBoite;
     private String imageUrl;
     private String immatriculation;
-    @ManyToOne(cascade = { CascadeType.ALL })
+    @ManyToOne
 	@JoinColumn(name = "idUtilisateur")
     @JsonIgnoreProperties("vehicules")
     private Utilisateur idUtilisateur;

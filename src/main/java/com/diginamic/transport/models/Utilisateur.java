@@ -22,30 +22,35 @@ public class Utilisateur implements Serializable {
     private Long id;
     private String identifiant;
     private String mdp;
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne//(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idProfil", referencedColumnName = "id")
     private Profil idProfil;
     private String nom;
     private String prenom;
     private String mail;
     private String tel;
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne//(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idVille", referencedColumnName = "id")
     private Ville idVille;
     private String adresse;
     private String imageUrl;
+    
     @OneToMany(mappedBy = "idUtilisateur", cascade = { CascadeType.ALL })
     @JsonIgnoreProperties("idUtilisateur")
-	private Set<Vehicule> vehicules = new HashSet<>();
+	private Set<Vehicule> vehicules = new HashSet<>();  
     
+    
+    @OneToMany(mappedBy = "idUtilisateur", cascade = { CascadeType.ALL })
+    @JsonIgnoreProperties("idUtilisateur")
+	private Set<Anonce> anonces = new HashSet<>();
+
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Utilisateur(Long id, String identifiant, String mdp, Profil idProfil, String nom,
-			String prenom, String mail, String tel, Ville idVille, String adresse, String imageUrl,
-			Set<Vehicule> vehicules) {
+	public Utilisateur(Long id, String identifiant, String mdp, Profil idProfil, String nom, String prenom, String mail,
+			String tel, Ville idVille, String adresse, String imageUrl, Set<Vehicule> vehicules, Set<Anonce> anonces) {
 		super();
 		this.id = id;
 		this.identifiant = identifiant;
@@ -59,6 +64,7 @@ public class Utilisateur implements Serializable {
 		this.adresse = adresse;
 		this.imageUrl = imageUrl;
 		this.vehicules = vehicules;
+		this.anonces = anonces;
 	}
 
 	public Long getId() {
@@ -92,7 +98,6 @@ public class Utilisateur implements Serializable {
 	public void setIdProfil(Profil idProfil) {
 		this.idProfil = idProfil;
 	}
-
 
 	public String getNom() {
 		return nom;
@@ -157,9 +162,30 @@ public class Utilisateur implements Serializable {
 	public void setVehicules(Set<Vehicule> vehicules) {
 		this.vehicules = vehicules;
 	}
-	
-	
-	
+
+	public Set<Anonce> getAnonces() {
+		return anonces;
+	}
+
+	public void setAnonces(Set<Anonce> anonces) {
+		this.anonces = anonces;
+	}
     
     
-}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	}
